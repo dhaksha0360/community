@@ -60,7 +60,7 @@ const Donation = () => {
 
       // Wait for 2 seconds before navigating
       setTimeout(() => {
-        navigate("/home");
+        navigate("/");
       }, 2000);
       
     } catch (error) {
