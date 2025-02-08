@@ -16,7 +16,7 @@ const Footer = () => {
         <div className="footer-section">
           {/* School Info Section */}
           <img
-            src="/assets/school-logo.png"
+            src="/assets/images/school-logo.jpg"
             alt="School Logo"
             className="footer-logo"
           />

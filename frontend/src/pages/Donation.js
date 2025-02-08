@@ -1,15 +1,27 @@
-import React, { useState } from 'react';
-import Navbar from "../components/Navbar"; // Importing Navbar component
+// /src/pages/Donation.js
+import React, { useState, useEffect } from 'react';
+import Navbar from "../components/Navbar";
 import '../styles/Donation.css';
 import Footer from "../components/Footer";
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const Donation = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    phone: '',
     amount: '',
     receipt: null,
   });
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!localStorage.getItem("token")) {
+      navigate("/login");
+    }
+  }, [navigate]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -27,91 +39,109 @@ const Donation = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission logic (e.g., send formData to backend API)
-    alert('Donation details submitted successfully!');
+
+    // Prepare form data
+    const donationData = new FormData();
+    donationData.append('name', formData.name);
+    donationData.append('email', formData.email);
+    donationData.append('phone', formData.phone);
+    donationData.append('amount', formData.amount);
+    donationData.append('receipt', formData.receipt);
+
+    try {
+      const response = await axios.post('http://localhost:5004/api/donation', donationData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      alert(response.data.message);
+    } catch (error) {
+      console.error('There was an error submitting the donation:', error);
+      alert('There was an error submitting your donation.');
+    }
   };
 
   return (
     <>
-      <Navbar /> 
-    <div className="donation-container">
-      <h2>Make Your Donation</h2>
-      <p className="instruction">
-        Please make your payment using the bank details below and upload your receipt or payment bill here.
-      </p>
-      <div className="bank-details">
-        <h3>Bank Details:</h3>
-        <p>Bank Name: Bank Of Ceylon</p>
-        <p>Account Name: KahawattaMMV</p>
-        <p>Account Number: 123-456-789</p>
-        <p>Branch: Balangoada</p>
-        <p>Swift Code: ABCD1234</p>
+      <Navbar />
+      <div className="donation-container">
+        <h2>Make Your Donation</h2>
+        <p className="instruction">
+          Please make your payment using the bank details below and upload your receipt or payment bill here.
+        </p>
+        <div className="bank-details">
+          <h3>Bank Details:</h3>
+          <p>Bank Name: Bank Of Ceylon</p>
+          <p>Account Name: KahawattaMMV</p>
+          <p>Account Number: 123-456-789</p>
+          <p>Branch: Balangoada</p>
+          <p>Swift Code: ABCD1234</p>
+        </div>
+
+        <form onSubmit={handleSubmit} className="donation-form">
+          <div className="form-group">
+            <label htmlFor="name">Full Name:</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="email">Email Address:</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="phone">Phone Number:</label>
+            <input
+              type="phone"
+              id="phone"
+              name="phone"
+              value={formData.phone}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="amount">Donation Amount:</label>
+            <input
+              type="number"
+              id="amount"
+              name="amount"
+              value={formData.amount}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="receipt">Upload Receipt:</label>
+            <input
+              type="file"
+              id="receipt"
+              name="receipt"
+              accept="image/*, .pdf"
+              onChange={handleFileChange}
+              required
+            />
+          </div>
+          <button type="submit" className="submit-btn">
+            Submit Donation
+          </button>
+        </form>
       </div>
-      
-      <form onSubmit={handleSubmit} className="donation-form">
-        <div className="form-group">
-          <label htmlFor="name">Full Name:</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="email">Email Address:</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="email">Phone Number:</label>
-          <input
-            type="phone"
-            id="phone"
-            name="phone"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="amount">Donation Amount:</label>
-          <input
-            type="number"
-            id="amount"
-            name="amount"
-            value={formData.amount}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="receipt">Upload Receipt:</label>
-          <input
-            type="file"
-            id="receipt"
-            name="receipt"
-            accept="image/*, .pdf"
-            onChange={handleFileChange}
-            required
-          />
-        </div>
-        <button type="submit" className="submit-btn">
-          Submit Donation
-        </button>
-      </form>
-    </div>
-    <Footer />
+      <Footer />
     </>
   );
 };
