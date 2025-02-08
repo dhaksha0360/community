@@ -1,0 +1,56 @@
+/* Ensure the About Us container takes full height but does not overlap the footer */
+.about-us-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Ensure the content grows properly without overlapping the footer */
+.content-wrapper {
+  flex-grow: 1;
+  padding: 50px 0;
+}
+
+/* Reduce mission & story images size */
+.section-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.small-image {
+  max-width: 80%;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Cards styling */
+.stat-card {
+  text-align: center;
+  border: none;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+.stat-card:hover {
+  transform: scale(1.05);
+}
+
+.stat-icon {
+  font-size: 2rem;
+  color: #ff6600;
+  margin-bottom: 10px;
+}
+
+/* Ensure footer is not behind the content */
+.footer {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+}
+
+.about-us-image {
+  max-width: 100%;  /* Ensures the image scales down on smaller screens */
+  height: auto;     /* Maintains aspect ratio */
+  width: 200px;     /* Set to a specific width you prefer */
+}
