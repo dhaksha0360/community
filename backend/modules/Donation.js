@@ -1,4 +1,3 @@
-// /backend/models/Donation.js
 const mongoose = require('mongoose');
 
 const donationSchema = new mongoose.Schema({
@@ -19,7 +18,7 @@ const donationSchema = new mongoose.Schema({
     required: true,
   },
   receipt: {
-    type: String,  // URL to the uploaded file (or you can use a Buffer if storing file data directly)
+    type: String,  // Store file path as a string
     required: true,
   },
   date: {

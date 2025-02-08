@@ -1,34 +1,35 @@
 const Donation = require('../modules/Donation');
 const multer = require('multer');
+const path = require('path');
+const fs = require('fs');
+
+// Ensure the uploads folder exists
+const uploadDir = path.join(__dirname, '../uploads');
+if (!fs.existsSync(uploadDir)) {
+  fs.mkdirSync(uploadDir, { recursive: true });
+}
 
 // Set up multer storage configuration
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    // Ensure the uploads folder exists, if not create it
-    const uploadDir = 'backend/uploads/';
     cb(null, uploadDir);
   },
   filename: (req, file, cb) => {
-    // Ensure the filename is unique by appending the timestamp
-    cb(null, Date.now() + '-' + file.originalname);
+    cb(null, Date.now() + path.extname(file.originalname));
   }
 });
 
 // Initialize multer with the storage configuration
-const upload = multer({ storage: storage });
+const upload = multer({ storage });
 
 // Controller method to handle donations
 exports.createDonation = [
-  upload.single('receipt'),  // Multer middleware for handling file upload
+  upload.single('receipt'),
   async (req, res) => {
     try {
-      // Extract form data
       const { name, email, phone, amount } = req.body;
+      const receipt = req.file ? `/uploads/${req.file.filename}` : null;
 
-      // Get the file path from multer if the file exists
-      const receipt = req.file ? req.file.path : null;
-
-      // Save donation details to the database
       const newDonation = new Donation({
         name,
         email,
@@ -37,14 +38,13 @@ exports.createDonation = [
         receipt,
       });
 
-      // Save the donation and respond
       await newDonation.save();
       res.status(201).json({
-        message: 'Donation saved successfully!',
+        message: 'Donation submitted successfully!',
         donation: newDonation,
       });
     } catch (error) {
-      console.error('Error saving donation:', error);
+      console.error('Error submitting donation:', error);
       res.status(500).json({
         message: 'There was an error submitting your donation.',
         error: error.message,
