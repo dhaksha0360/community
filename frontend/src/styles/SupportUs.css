@@ -35,7 +35,7 @@
   .support-impact-section {
     padding: 50px 0;
     text-align: center;
-    max-width: 1200px;  /* Set a max width */
+    max-width: 1100px;  /* Set a max width */
     margin: 0 auto;  /* Center align */
     width: 90%;  /* Responsive width */
   }
@@ -60,7 +60,7 @@
     flex-wrap: wrap;
     max-width: 1200px;  /* Set max width */
     margin: 0 auto;  /* Center align */
-    width: 90%;  /* Responsive width */
+    width: 100%;  /* Responsive width */
   }
   
   /* Impact Card */

@@ -14,10 +14,12 @@ const AboutUs = () => {
           {/* About Us Header */}
           <Row className="text-center mb-5">
             <Col>
-              <h1>About Us</h1>
+              <h1>About Us</h1> <br></br>
               <p className="lead">
-                R/Nivi/Kahawatta Muslim Maha Vidyala is dedicated to nurturing young
-                minds through education, values, and innovation.
+              At R/Nivi/Kahawatta Muslim Maha Vidyala, we are committed to providing a nurturing and inspiring 
+              environment where students can achieve academic excellence, develop essential life skills, 
+              and grow into responsible individuals. With a rich history of educational success, 
+              we take pride in fostering a culture of innovation, discipline, and holistic development.
               </p>
             </Col>
           </Row>
@@ -45,7 +47,7 @@ const AboutUs = () => {
               />
             </Col>
             <Col md={6}>
-              <h2>Our Mission: Empowering Future Generations</h2>
+              <h2>Our Mission: Empowering Future Generations</h2> <br></br>
               <p>
                 We believe in creating an inclusive learning environment where students 
                 can grow academically and personally, preparing them for a successful future.
@@ -57,14 +59,14 @@ const AboutUs = () => {
           <Row className="align-items-center my-5">
             <Col md={6} className="order-md-2">
               <Image
-                src="/assets/images/story-image.jpg"
+                src="/assets/images/vision-image.jpg"
                 alt="Our Story"
                 className="section-image small-image"
                 fluid
               />
             </Col>
             <Col md={6} className="order-md-1">
-              <h2>Our Story</h2>
+              <h2>Our Story</h2><br></br>
               <p>
                 Since its founding, R/Nivi/Kahawatta Muslim Maha Vidyala has been committed 
                 to fostering excellence in education. From humble beginnings, we have 
@@ -85,8 +87,8 @@ const AboutUs = () => {
               <Card className="stat-card">
                 <Card.Body>
                   <FaGlobe className="stat-icon" />
-                  <Card.Title>10+ Branches</Card.Title>
-                  <p>Serving students across multiple regions.</p>
+                  <Card.Title>1000+ Alumni</Card.Title>
+                  <p>Alumnis across multiple regions.</p>
                 </Card.Body>
               </Card>
             </Col>
