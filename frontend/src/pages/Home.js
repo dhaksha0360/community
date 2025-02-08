@@ -12,10 +12,10 @@ function Home() {
       <nav className="home-nav">
         <div className="contact-info">
           <span>
-            <FaPhone className="icon" /> +94 77 123 4567
+            <FaPhone className="icon" /> 045 227 1625
           </span>
           <span>
-            <FaEnvelope className="icon" /> example@school.com
+            <FaEnvelope className="icon" /> kahawattamv28641@gmail.com
           </span>
         </div>
         <div className="sup-buttons">

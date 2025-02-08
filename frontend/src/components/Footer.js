@@ -42,9 +42,9 @@ const Footer = () => {
         {/* Contact Section */}
         <div className="footer-section">
           <h4>Contact Us</h4>
-          <p><FaMapMarkerAlt className="footer-icon" /> 123 School Lane, City, Country</p>
-          <p><FaPhone className="footer-icon" /> +94 71 234 5678</p>
-          <p><FaEnvelope className="footer-icon" /> contact@ourschool.com</p>
+          <p><FaMapMarkerAlt className="footer-icon" /> 2nd cross,Ellegewatta,Kahawatta,Rathnapura</p>
+          <p><FaPhone className="footer-icon" /> 045 227 1625</p>
+          <p><FaEnvelope className="footer-icon" /> kahawattamv28641@gmail.com</p>
           <p>
             <a href="https://www.facebook.com/share/15vJnCKbD8/" target="_blank" rel="noopener noreferrer" className="facebook-link">
               <FaFacebook className="footer-icon" /> Follow us on Facebook
